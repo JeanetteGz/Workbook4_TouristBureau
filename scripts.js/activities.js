@@ -1,6 +1,10 @@
 "use strict"
+let selectCategoriesEl = document.getElementById("select-categories");
 
-let categories = ["Adventures", "Arts & Crafts", "Museums", "Wine Tastings", "Other"];
+window.onload = function () {
+    populateCategoryDropdown();
+    selectCategoriesEl.onchange = function(){
+
 
 let activities = [
     {
@@ -100,6 +104,33 @@ let activities = [
         price: 0.00 
     }
 ];
-for(let i=0; i<activities; i++){
 
-}
+
+let selectActivitiesEl = document.getElementById("select-activities");
+selectActivitiesEl.style.visibility = "visible"; // Unhiding activities selection
+selectActivitiesEl.options.length = 0; // Reseting all options
+
+console.log(selectCategoriesEl.value, activities);
+
+        // for loop with activities
+            //filter activities by SelectCategoriesEl.value
+            for(let activity of activities){
+                let selectedCategory = selectCategoriesEl.value; // "Adventure"
+
+                if(activity.category === selectedCategory){
+                    let option = new Option(activity.name);
+                    selectActivitiesEl.appendChild(option);
+                }
+            }
+    }
+};
+
+function populateCategoryDropdown() {
+    let categories = ["", "Adventures", "Arts & Crafts", "Museums", "Wine Tastings", "Other"];
+    
+    for (let i = 0; i < categories.length; i++) {
+        let categoryName = categories[i];
+        let categoryOption = new Option(categoryName);
+        selectCategoriesEl.appendChild(categoryOption);
+    }
+};

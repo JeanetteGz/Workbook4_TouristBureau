@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tourist Bureau</title>
+    <style>
+        #select-activities{
+            visibility: hidden;
+        }
+    </style>
     <link
         rel="stylesheet" href="/styles/activities.css"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -14,10 +19,11 @@
 </nav>
 <body class="d-flex flex-column justify-content-center align-items-center">
     <h1 class="text-center">Activities</h1>
-    <label>Choose a categoria:</label>
-    <select id="dropdown" name="activities" side="5"></select>
-    <button id="confirm-btn"></button>
-    <p id="activities-info"></p>
+    <label>Choose a category:</label>
+    <select id="select-categories"></select>
+
+    <select id="select-activities"></select>
+
     <script src="/scripts.js/activities.js"></script>
 </body>
 </html>

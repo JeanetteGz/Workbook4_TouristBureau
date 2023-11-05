@@ -6,3 +6,6 @@ nav a {
 h1 {
     text-align: center;
 }
+#select-activities {
+    visibility: hidden;
+}

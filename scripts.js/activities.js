@@ -134,7 +134,6 @@ console.log(selectCategoriesEl.value, activities);
                     
                         if (selectedActivity) {
                             // Display the description of the selected activity
-                            // Assuming you have an element with the ID "activity-details" to display the description
                             let activityDescriptionElement = document.getElementById("activity-details");
                             activityDescriptionElement.innerHTML = `<p>${selectedActivity.description}</p> 
                             <p><strong>Location:</strong> ${selectedActivity.location}</p>

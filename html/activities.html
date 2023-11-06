@@ -3,31 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tourist Bureau</title>
+    <title>Tourist Bureau - Activities</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/activities.css">
     <style>
-        body {
-            background-color: #cdedf8; /* Your desired background color */
-        }
-        #select-activities{
+        #select-activities {
             visibility: hidden;
         }
     </style>
-    <link
-        rel="stylesheet" href="/styles/activities.css"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
+        <nav class="text-center"><a href="/html/index.html">Home Page</a></nav>
 </head>
-<nav class="text-center">
-    <a href="/html/index.html">Home Page</a>
-</nav>
-<body class="d-flex flex-column justify-content-center align-items-center">
+<body class="background-image d-flex flex-column justify-content-center align-items-center">
+
     <h1 class="text-center">Activities</h1>
-    <label>Choose a category:</label>
-    <select id="select-categories"></select>
 
-    <select id="select-activities"></select>
+    <div class="container">
+        <label for="select-categories">Choose a category:</label>
+        <select id="select-categories" class="form-control"></select>
+    </div>
 
-    <label id="activity-description"></label>
+    <div class="container mt-3" id="activity-section">
+        <select id="select-activities" class="form-control"></select>
+        <div id="activity-details" class="mt-3"></div>
+
+        <div id="activity-description"></div>
+
+    </div>
 
     <script src="/scripts.js/activities.js"></script>
 </body>

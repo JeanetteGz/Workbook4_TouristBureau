@@ -1,11 +1,28 @@
 nav a {
-    color: black;
+    color: rgb(255, 255, 255);
     text-decoration: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #000000; /* Text color */
+    display: block;
+    background-color: #fff; /* White background */
+    padding: 10px 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
     text-align: center;
+    margin-top: 8px;
 }
 h1 {
     text-align: center;
 }
 #select-activities {
     visibility: hidden;
+}
+.background-image {
+    background-image: url('/images/gradiemt.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: #fff;
 }

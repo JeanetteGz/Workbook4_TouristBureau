@@ -105,6 +105,7 @@ let activities = [
     }
 ];
 
+
 // Dropdown for the activities based on the category selected
 let selectActivitiesEl = document.getElementById("select-activities");
 selectActivitiesEl.style.visibility = "visible"; // Unhiding activities selection
@@ -120,11 +121,24 @@ console.log(selectCategoriesEl.value, activities);
         // for loop with activities
             //filter activities by SelectCategoriesEl.value
             for(let activity of activities){
-                let selectedCategory = selectCategoriesEl.value; // "Adventure"
+                let selectedCategory = selectCategoriesEl.value;
 
                 if(activity.category === selectedCategory){
                     let option = new Option(activity.name);
                     selectActivitiesEl.appendChild(option);
+
+                    selectActivitiesEl.onchange = function() {
+                        let selectedActivityName = this.value;
+                    
+                        let selectedActivity = activities.find(activity => activity.name === selectedActivityName);
+                    
+                        if (selectedActivity) {
+                            // Display the description of the selected activity
+                            // Assuming you have an element with the ID "activity-details" to display the description
+                            let activityDescriptionElement = document.getElementById("activity-details");
+                            activityDescriptionElement.innerHTML = `<p>${selectedActivity.description}</p>`;
+                        }
+                    };
                 }
             }
     }

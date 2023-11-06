@@ -1,5 +1,6 @@
 "use strict"
 let selectCategoriesEl = document.getElementById("select-categories");
+let purchaseForm = document.getElementById("ticketForm");
 
 window.onload = function () {
     populateCategoryDropdown();
@@ -129,20 +130,42 @@ console.log(selectCategoriesEl.value, activities);
 
                     selectActivitiesEl.onchange = function() {
                         let selectedActivityName = this.value;
-                    
                         let selectedActivity = activities.find(activity => activity.name === selectedActivityName);
                     
                         if (selectedActivity) {
                             // Display the description of the selected activity
                             // Assuming you have an element with the ID "activity-details" to display the description
                             let activityDescriptionElement = document.getElementById("activity-details");
-                            activityDescriptionElement.innerHTML = `<p>${selectedActivity.description}</p>`;
-                        }
+                            activityDescriptionElement.innerHTML = `<p>${selectedActivity.description}</p> 
+                            <p><strong>Location:</strong> ${selectedActivity.location}</p>
+                            <p><strong>Price:</strong> $${selectedActivity.price.toFixed(2)}</p>`;
+
+                            if (selectedActivity.price > 0) {
+                                purchaseForm.style.display = "block"; // Display the form
+                            } else {
+                                purchaseForm.style.display = "none"; // Hide the form
+                            }
                     };
                 }
             }
     }
 };
+
+document.getElementById("ticket-btn").addEventListener("click", function() {
+    let selectedActivityName = selectActivitiesEl.value;
+    let selectedActivity = activities.find(activity => activity.name === selectedActivityName);
+    let numberOfTickets = document.getElementById("numberOfTickets").value;
+    let creditCard = document.getElementById("creditCard").value;
+    let email = document.getElementById("email").value;
+    let confirmationMessage = document.getElementById("confirmationMessage");
+
+    if (selectedActivity && numberOfTickets && creditCard && email) {
+        let message = `Your credit card has been charged $${(selectedActivity.price * numberOfTickets).toFixed(2)} for ${numberOfTickets} to ${selectedActivity.name}. A confirmation email has been sent to ${email}.`;
+        confirmationMessage.textContent = message;
+        confirmationMessage.style.display = "block";
+        purchaseForm.style.display = "none";
+    }
+});
 
 
 // Dropdown for the categories
@@ -154,4 +177,5 @@ function populateCategoryDropdown() {
         let categoryOption = new Option(categoryName);
         selectCategoriesEl.appendChild(categoryOption);
     }
+}
 };

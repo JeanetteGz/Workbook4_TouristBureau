@@ -144,6 +144,7 @@ window.onload = function () {
     };
 };
 
+// get the name of each activity
 function getActivityByName(activityName) {
     for (let i = 0; i < activities.length; i++) {
         if (activities[i].name === activityName) {
@@ -153,6 +154,7 @@ function getActivityByName(activityName) {
     return null;
 }
 
+// get the details of the activities
 function displayActivityDetails(selectedActivity) {
     let activityDescriptionElement = document.getElementById("activity-details");
     activityDescriptionElement.innerHTML = 
@@ -165,7 +167,6 @@ function displayActivityDetails(selectedActivity) {
     } else {
         purchaseForm.style.display = "none";
     }
-
     document.getElementById("ticket-btn").addEventListener("click", function () {handleTicketPurchase(selectedActivity);});
 }
 

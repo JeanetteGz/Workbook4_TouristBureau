@@ -6,7 +6,6 @@ window.onload = function () {
     populateCategoryDropdown();
     selectCategoriesEl.onchange = function(){
 
-
 let activities = [
     {
         category: "Adventures", 
@@ -105,8 +104,6 @@ let activities = [
         price: 0.00 
     }
 ];
-
-
 // Dropdown for the activities based on the category selected
 let selectActivitiesEl = document.getElementById("select-activities");
 selectActivitiesEl.style.visibility = "visible"; // Unhiding activities selection
@@ -116,8 +113,6 @@ selectActivitiesEl.options.length = 0; // Reseting all options
         selectOption.text = "Select one";
         selectOption.value = "";
         selectActivitiesEl.appendChild(selectOption);
-
-console.log(selectCategoriesEl.value, activities);
 
         // for loop with activities
             //filter activities by SelectCategoriesEl.value
@@ -149,7 +144,6 @@ console.log(selectCategoriesEl.value, activities);
             }
     }
 };
-
 document.getElementById("ticket-btn").addEventListener("click", function() {
     let selectedActivityName = selectActivitiesEl.value;
     let selectedActivity = activities.find(activity => activity.name === selectedActivityName);
@@ -165,8 +159,6 @@ document.getElementById("ticket-btn").addEventListener("click", function() {
         purchaseForm.style.display = "none";
     }
 });
-
-
 // Dropdown for the categories
 function populateCategoryDropdown() {
     let categories = ["Select an Option", "Adventures", "Arts & Crafts", "Museums", "Wine Tastings", "Other"];

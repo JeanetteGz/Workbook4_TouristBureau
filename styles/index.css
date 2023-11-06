@@ -4,21 +4,19 @@ nav a {
     position: fixed;
     top: 0;
     left: 0;
-    color: #000000; /* Text color */
+    color: #000000;
     display: block;
-    background-color: #fff; /* White background */
+    background-color: #fff;
     padding: 10px 10px;
     border-radius: 8px;
     margin-bottom: 8px;
     text-align: center;
     margin-top: 8px;
 }
-
 h1 {
     text-align: center;
     margin-bottom: auto;
 }
-
 .background-image {
     background-image: url('/images/gradiemt.jpg');
     background-size: cover;

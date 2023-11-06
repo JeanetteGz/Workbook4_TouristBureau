@@ -105,10 +105,15 @@ let activities = [
     }
 ];
 
-
+// Dropdown for the activities based on the category selected
 let selectActivitiesEl = document.getElementById("select-activities");
 selectActivitiesEl.style.visibility = "visible"; // Unhiding activities selection
 selectActivitiesEl.options.length = 0; // Reseting all options
+
+        let selectOption = document.createElement("option");
+        selectOption.text = "Select one";
+        selectOption.value = "";
+        selectActivitiesEl.appendChild(selectOption);
 
 console.log(selectCategoriesEl.value, activities);
 
@@ -125,8 +130,10 @@ console.log(selectCategoriesEl.value, activities);
     }
 };
 
+
+// Dropdown for the categories
 function populateCategoryDropdown() {
-    let categories = ["", "Adventures", "Arts & Crafts", "Museums", "Wine Tastings", "Other"];
+    let categories = ["Select an Option", "Adventures", "Arts & Crafts", "Museums", "Wine Tastings", "Other"];
     
     for (let i = 0; i < categories.length; i++) {
         let categoryName = categories[i];

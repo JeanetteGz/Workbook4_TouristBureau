@@ -144,9 +144,8 @@ selectActivitiesEl.options.length = 0; // Reseting all options
             }
     }
 };
-document.getElementById("ticket-btn").addEventListener("click", function() {
-    let selectedActivityName = selectActivitiesEl.value;
-    let selectedActivity = activities.find(activity => activity.name === selectedActivityName);
+function handleTicketPurchase(selectedActivity) {
+    let selectActivitiesEl = document.getElementById("select-activities");
     let numberOfTickets = document.getElementById("numberOfTickets").value;
     let creditCard = document.getElementById("creditCard").value;
     let email = document.getElementById("email").value;
@@ -158,7 +157,7 @@ document.getElementById("ticket-btn").addEventListener("click", function() {
         confirmationMessage.style.display = "block";
         purchaseForm.style.display = "none";
     }
-});
+};
 // Dropdown for the categories
 function populateCategoryDropdown() {
     let categories = ["Select an Option", "Adventures", "Arts & Crafts", "Museums", "Wine Tastings", "Other"];

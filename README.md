@@ -6,7 +6,8 @@
 
 
 <h3>Activity Page</h3>
-<img src="/images/readme_images/futureValue_page.jpeg">
+<img src="/images/readme/activity1.png">
+<img src="/images/readme/activity2.png">
 <p>On this page the user is able to purchase tickets based on the activity. The user will be able to read the activity description and the price for each activity.</p>
 
 

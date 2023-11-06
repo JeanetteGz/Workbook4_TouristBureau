@@ -1,4 +1,4 @@
-# Workbook 4 Workshop: Torist Bureau
+# Workbook 3 Workshop: Torist Bureau
 
 <h3>Home Page</h3>
 <img src="/images/readme/home.png">

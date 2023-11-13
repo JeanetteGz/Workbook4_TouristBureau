@@ -5,7 +5,8 @@ let purchaseForm = document.getElementById("ticketForm");
 window.onload = function () {
     populateCategoryDropdown();
     selectCategoriesEl.onchange = function () {
-        let activities = [
+
+    let activities = [
             {
                 category: "Adventures",
                 id: "A101",
@@ -116,87 +117,68 @@ window.onload = function () {
             },
         ];
         // Dropdown for the activities based on the category selected
-        let selectActivitiesEl = document.getElementById("select-activities");
-        selectActivitiesEl.style.visibility = "visible";
-        selectActivitiesEl.options.length = 0;
-
-        let selectOption = new Option("Select one");
+let selectActivitiesEl = document.getElementById("select-activities");
+selectActivitiesEl.style.visibility = "visible"; // Unhiding activities selection
+selectActivitiesEl.options.length = 0; // Reseting all options
+        let selectOption = document.createElement("option");
+        selectOption.text = "Select one";
         selectOption.value = "";
         selectActivitiesEl.appendChild(selectOption);
 
-        let selectedCategory = selectCategoriesEl.value;
+console.log(selectCategoriesEl.value, activities);
 
-        for (let activity of activities) {
-            if (activity.category === selectedCategory) {
-                let option = new Option(activity.name);
-                selectActivitiesEl.appendChild(option);
+        // for loop with activities
+            //filter activities by SelectCategoriesEl.value
+            for(let activity of activities){
+                let selectedCategory = selectCategoriesEl.value;
+                if(activity.category === selectedCategory){
+                    let option = new Option(activity.name);
+                    selectActivitiesEl.appendChild(option);
+                    selectActivitiesEl.onchange = function() {
+                        let selectedActivityName = this.value;
+                        let selectedActivity = activities.find(activity => activity.name === selectedActivityName);
+                    
+                        if (selectedActivity) {
+                            // Display the description of the selected activity
+                            let activityDescriptionElement = document.getElementById("activity-details");
+                            activityDescriptionElement.innerHTML = `<p>${selectedActivity.description}</p> 
+                            <p><strong>Location:</strong> ${selectedActivity.location}</p>
+                            <p><strong>Price:</strong> $${selectedActivity.price.toFixed(2)}</p>`;
+                            if (selectedActivity.price > 0) {
+                                purchaseForm.style.display = "block"; // Display the form
+                            } else {
+                                purchaseForm.style.display = "none"; // Hide the form
+                            }
+                    };
+                }
             }
-        }
-
-        selectActivitiesEl.addEventListener("change", function () {
-            let selectedActivityName = this.value;
-            let selectedActivity = getActivityByName(selectedActivityName);
-
-            if (selectedActivity) {
-                displayActivityDetails(selectedActivity);
-            }
-        });
-    };
+    }
 };
 
-// get the name of each activity
-function getActivityByName(activityName) {
-    for (let i = 0; i < activities.length; i++) {
-        if (activities[i].name === activityName) {
-            return activities[i];
-        }
-    }
-    return null;
-}
-
-// get the details of the activities
-function displayActivityDetails(selectedActivity) {
-    let activityDescriptionElement = document.getElementById("activity-details");
-    activityDescriptionElement.innerHTML = 
-    `<p>${selectedActivity.description}</p>
-    <p><strong>Location:</strong> ${selectedActivity.location}</p>
-    <p><strong>Price:</strong> $${selectedActivity.price.toFixed(2)}</p>`;
-
-    if (selectedActivity.price > 0) {
-        purchaseForm.style.display = "block";
-    } else {
-        purchaseForm.style.display = "none";
-    }
-    document.getElementById("ticket-btn").addEventListener("click", function () {handleTicketPurchase(selectedActivity);});
-}
-
-// Form to purchase tickets with confirmation message
-function handleTicketPurchase(selectedActivity) {
+document.getElementById("ticket-btn").addEventListener("click", function() {
+    let selectedActivityName = selectActivitiesEl.value;
+    let selectedActivity = activities.find(activity => activity.name === selectedActivityName);
     let numberOfTickets = document.getElementById("numberOfTickets").value;
     let creditCard = document.getElementById("creditCard").value;
     let email = document.getElementById("email").value;
     let confirmationMessage = document.getElementById("confirmationMessage");
-
     if (selectedActivity && numberOfTickets && creditCard && email) {
-        let message = `Your credit card has been charged $${(
-            selectedActivity.price * numberOfTickets
-        ).toFixed(2)} for ${numberOfTickets} to ${
-            selectedActivity.name
-        }. A confirmation email has been sent to ${email}.`;
+        let message = `Your credit card has been charged $${(selectedActivity.price * numberOfTickets).toFixed(2)} for ${numberOfTickets} to ${selectedActivity.name}. A confirmation email has been sent to ${email}.`;
         confirmationMessage.textContent = message;
         confirmationMessage.style.display = "block";
         purchaseForm.style.display = "none";
     }
-}
+});
 
 
 // Dropdown for the categories
 function populateCategoryDropdown() {
-    let categories = ["Select an Option","Adventures","Arts & Crafts","Museums","Wine Tastings","Other",];
-
+    let categories = ["Select an Option", "Adventures", "Arts & Crafts", "Museums", "Wine Tastings", "Other"];
+    
     for (let i = 0; i < categories.length; i++) {
         let categoryName = categories[i];
         let categoryOption = new Option(categoryName);
         selectCategoriesEl.appendChild(categoryOption);
     }
 }
+};
